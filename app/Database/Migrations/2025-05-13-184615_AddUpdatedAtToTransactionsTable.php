@@ -12,14 +12,11 @@ class AddUpdatedAtToTransactionsTable extends Migration
         $this->forge->addColumn('transactions', [
             'updated_at' => [
                 'type'    => 'TIMESTAMP',
-                'null'    => true, // Ou false com default, dependendo da sua necessidade
-                'default' => new RawSql('CURRENT_TIMESTAMP'), // Para PostgreSQL, pode ser só 'CURRENT_TIMESTAMP' na string se o DB suportar na definição
-            ],
+                'null'    => true,
+                'default' => new RawSql('CURRENT_TIMESTAMP'), 
+                        ],
         ]);
 
-        // Opcional: Se você quer que o PostgreSQL atualize automaticamente no UPDATE
-        // (Requer a função e o trigger, como mostrado anteriormente para a tabela users)
-        // Se não adicionar o trigger, o CodeIgniter cuidará de preencher no update.
     }
 
     public function down()

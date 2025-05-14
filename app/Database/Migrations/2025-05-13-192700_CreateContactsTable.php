@@ -5,7 +5,7 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class CreateContactsTable extends Migration // Nome da classe pode variar
+class CreateContactsTable extends Migration 
 {
     public function up()
     {
@@ -15,11 +15,11 @@ class CreateContactsTable extends Migration // Nome da classe pode variar
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'user_id' => [ // Quem é o dono desta lista de contatos
+            'user_id' => [ 
                 'type'       => 'BIGINT',
                 'unsigned'   => true,
             ],
-            'contact_user_id' => [ // Quem é o contato adicionado
+            'contact_user_id' => [ 
                 'type'       => 'BIGINT',
                 'unsigned'   => true,
             ],
@@ -29,9 +29,9 @@ class CreateContactsTable extends Migration // Nome da classe pode variar
             ],
         ]);
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE'); // Se o usuário for deletado, seus registros de contato são deletados
-        $this->forge->addForeignKey('contact_user_id', 'users', 'id', 'CASCADE', 'CASCADE'); // Se o contato for deletado, este registro de contato é deletado
-        $this->forge->addUniqueKey(['user_id', 'contact_user_id'], 'idx_user_contact_unique'); // Evita duplicatas
+        $this->forge->addForeignKey('user_id', 'users', 'id', 'CASCADE', 'CASCADE'); 
+        $this->forge->addForeignKey('contact_user_id', 'users', 'id', 'CASCADE', 'CASCADE'); 
+        $this->forge->addUniqueKey(['user_id', 'contact_user_id'], 'idx_user_contact_unique'); 
         $this->forge->createTable('contacts');
     }
 

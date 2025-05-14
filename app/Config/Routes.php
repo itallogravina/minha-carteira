@@ -10,6 +10,14 @@ $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 // $routes->setAutoRoute(false);
+$routes->group('wallet', ['filter' => 'authGuard'], static function ($routes) {
+    $routes->get('dashboard', 'WalletController::dashboard');
+    $routes->get('dashboard', 'WalletController::dashboard'); // ou Wallet::dashboard se o nome do controller for Wallet.php
+    $routes->get('deposit', 'WalletController::deposit');     // Rota GET para mostrar o formulário
+    $routes->post('deposit', 'WalletController::deposit');    // Rota POST para processar o formulári
+    $routes->get('transfer', 'WalletController::transfer');  // Para exibir o formulário
+    $routes->post('transfer', 'WalletController::transfer'); // Para processar o formulário
+});
 
 $routes->get('/', 'Home::index');
 $routes->get('/auth/login', 'AuthController::login');

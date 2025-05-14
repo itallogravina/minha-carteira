@@ -15,18 +15,18 @@ class CreateWalletsTable extends Migration
                 'auto_increment' => true,
             ],
             'user_id' => [
-                'type'     => 'BIGINT', // Deve corresponder ao tipo de users.id
+                'type'     => 'BIGINT',
                 'unsigned' => true,
             ],
             'balance' => [
                 'type'       => 'DECIMAL',
-                'constraint' => '15,2', // Ajuste precisão conforme necessário
+                'constraint' => '15,2',
                 'default'    => 0.00,
             ],
             'currency' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '10',
-                'default'    => 'BRL', // Moeda padrão
+                'default'    => 'BRL',
             ],
             'is_default' => [
                 'type'    => 'BOOLEAN',

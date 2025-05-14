@@ -11,7 +11,7 @@ class CreateTransactionsTable extends Migration
         $this->forge->addField([
             'id' => [
                 'type'           => 'BIGSERIAL',
-                'unsigned'       => true, // Mantido por consistência, embora não estritamente necessário para (BIG)SERIAL
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
             'user_id' => [
@@ -48,7 +48,7 @@ class CreateTransactionsTable extends Migration
             ],
             'created_at' => [
                 'type'    => 'TIMESTAMP',
-                'default' => new \CodeIgniter\Database\RawSql('CURRENT_TIMESTAMP'), // Correto
+                'default' => new \CodeIgniter\Database\RawSql('CURRENT_TIMESTAMP'),
             ],
         ]);
         $this->forge->addKey('id', true);
@@ -58,20 +58,12 @@ class CreateTransactionsTable extends Migration
 
         $this->forge->createTable('transactions');
 
-        // Adicionar CHECK constraints usando $this->db->query()
-        // É importante que a tabela já exista antes de tentar adicionar constraints a ela.
         $this->db->query("ALTER TABLE transactions ADD CONSTRAINT check_transaction_type CHECK (type IN ('deposit', 'transfer', 'reversal'))");
         $this->db->query("ALTER TABLE transactions ADD CONSTRAINT check_transaction_status CHECK (status IN ('completed', 'pending', 'reversed', 'failed'))");
     }
 
     public function down()
     {
-        // A remoção das constraints CHECK não é estritamente necessária aqui,
-        // pois elas são removidas quando a tabela é dropada.
-        // No entanto, se você quisesse removê-las explicitamente antes de dropar a tabela:
-        // $this->db->query("ALTER TABLE transactions DROP CONSTRAINT IF EXISTS check_transaction_type");
-        // $this->db->query("ALTER TABLE transactions DROP CONSTRAINT IF EXISTS check_transaction_status");
-
         $this->forge->dropTable('transactions');
     }
 }
