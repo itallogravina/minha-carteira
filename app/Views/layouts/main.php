@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->renderSection('title') ?? 'Minha Carteira Virtual' ?></title>
-    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS via CDN -->
-    <!-- <link href="<?= base_url('css/output.css') ?>" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif; /* Exemplo de fonte, adicione link no head se não for padrão */
+            font-family: 'Inter', sans-serif;
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +19,6 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between">
                 <div class="flex space-x-7">
-                    <!-- Logo -->
                     <div>
                         <a href="<?= site_url('/wallet/dashboard') ?>" class="flex items-center py-4 px-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -30,7 +28,6 @@
                         </a>
                     </div>
 
-                    <!-- Navegação Primária (visível em telas maiores) -->
                     <?php if (session()->get('is_logged_in')): ?>
                         <div class="hidden md:flex items-center space-x-1">
                             <a href="<?= site_url('/wallet/dashboard') ?>"
@@ -41,12 +38,10 @@
                                class="py-4 px-3 text-gray-600 hover:text-indigo-600 transition duration-300 <?= (strpos(uri_string(), 'contacts') === 0 ? 'border-b-2 border-indigo-600 text-indigo-600 font-semibold' : 'font-medium') ?>">
                                 Contatos
                             </a>
-                            <!-- Adicione mais links de navegação aqui -->
                         </div>
                     <?php endif; ?>
                 </div>
 
-                <!-- Navegação Secundária (direita) -->
                 <div class="hidden md:flex items-center space-x-3 ">
                     <?php if (session()->get('is_logged_in')): ?>
                         <span class="py-2 px-2 text-gray-600 text-sm">Olá, <?= esc(session()->get('user_name')) ?></span>
@@ -56,7 +51,6 @@
                     <?php endif; ?>
                 </div>
 
-                <!-- Botão do Menu Mobile (visível em telas menores) -->
                 <?php if (session()->get('is_logged_in')): ?>
                 <div class="md:hidden flex items-center">
                     <button class="outline-none mobile-menu-button">
@@ -71,7 +65,6 @@
             </div>
         </div>
 
-        <!-- Menu Mobile -->
         <?php if (session()->get('is_logged_in')): ?>
         <div class="hidden mobile-menu md:hidden">
             <ul class="pt-2 pb-4 space-y-1">
@@ -81,22 +74,20 @@
                 <li>
                     <a href="<?= site_url('/contacts') ?>" class="block py-2 px-4 text-sm hover:bg-indigo-100 <?= (strpos(uri_string(), 'contacts') === 0 ? 'bg-indigo-100 text-indigo-700 font-semibold' : 'text-gray-700') ?>">Contatos</a>
                 </li>
-                <!-- Adicione mais links de navegação mobile aqui -->
-                 <li class="px-4 pt-2">
-                     <span class="block text-xs text-gray-500">Olá, <?= esc(session()->get('user_name')) ?></span>
-                 </li>
-                 <li>
+                <li class="px-4 pt-2">
+                    <span class="block text-xs text-gray-500">Olá, <?= esc(session()->get('user_name')) ?></span>
+                </li>
+                <li>
                     <a href="<?= site_url('/auth/logout') ?>" class="block w-full text-left mt-2 py-2 px-4 text-sm text-red-700 bg-red-100 hover:bg-red-200">Logout</a>
-                 </li>
+                </li>
             </ul>
         </div>
         <?php endif; ?>
     </nav>
 
     <main class="flex-grow max-w-6xl mx-auto mt-6 mb-8 px-4 w-full">
-        <!-- Flash Messages -->
         <?php
-        $flashTypes = ['success', 'error', 'info', 'warning']; // Adicionado 'warning'
+        $flashTypes = ['success', 'error', 'info', 'warning'];
         $flashColors = [
             'success' => ['bg' => 'bg-green-100', 'border' => 'border-green-400', 'text' => 'text-green-700', 'title' => 'Sucesso!'],
             'error'   => ['bg' => 'bg-red-100',   'border' => 'border-red-400',   'text' => 'text-red-700',   'title' => 'Erro!'],
@@ -113,22 +104,22 @@
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
-        
-        <?php
 
+        <?php
         $contactFlashTypes = ['success_contact_add', 'error_contact_add', 'info_contact_add', 'success_contact_remove', 'error_contact_remove'];
         foreach ($contactFlashTypes as $type):
             if (session()->getFlashdata($type)):
-                $baseType = explode('_', $type)[0]; // success, error, info
-                $colors = $flashColors[$baseType] ?? $flashColors['info']; // Padrão para info se não encontrar
-                ?>
+                $baseType = explode('_', $type)[0];
+                $colors = $flashColors[$baseType] ?? $flashColors['info'];
+        ?>
                 <div class="mb-4 <?= $colors['bg'] ?> border <?= $colors['border'] ?> <?= $colors['text'] ?> px-4 py-3 rounded relative" role="alert">
                     <strong class="font-bold"><?= ucfirst($baseType) ?>!</strong>
                     <span class="block sm:inline"><?= session()->getFlashdata($type) ?></span>
                 </div>
-            <?php endif; ?>
-        <?php endforeach; ?>
-
+        <?php
+            endif;
+        endforeach;
+        ?>
 
         <?= $this->renderSection('content') ?>
     </main>
@@ -139,7 +130,6 @@
 
     <?php if (session()->get('is_logged_in')): ?>
     <script>
-        // Script para o menu mobile
         const btn = document.querySelector("button.mobile-menu-button");
         const menu = document.querySelector(".mobile-menu");
 
