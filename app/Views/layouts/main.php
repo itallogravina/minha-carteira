@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->renderSection('title') ?? 'Minha Carteira Virtual' ?></title>
     <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS via CDN -->
-    <!-- Se usar instalação local: -->
     <!-- <link href="<?= base_url('css/output.css') ?>" rel="stylesheet"> -->
     <style>
-        /* Você pode adicionar estilos customizados aqui se necessário */
         body {
             font-family: 'Inter', sans-serif; /* Exemplo de fonte, adicione link no head se não for padrão */
         }
     </style>
-    <!-- Adicione um link para uma fonte se desejar, ex: Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -118,8 +115,7 @@
         <?php endforeach; ?>
         
         <?php
-        // Adicionado para flashdata específicos da adição de contato
-        // Poderia ser integrado ao loop acima se padronizarmos os nomes das flashdatas
+
         $contactFlashTypes = ['success_contact_add', 'error_contact_add', 'info_contact_add', 'success_contact_remove', 'error_contact_remove'];
         foreach ($contactFlashTypes as $type):
             if (session()->getFlashdata($type)):
