@@ -67,3 +67,21 @@
 #--------------------------------------------------------------------
 
 # logger.threshold = 4
+
+CI_ENVIRONMENT = development
+
+
+app.baseURL = 'http://localhost:8080'
+KEYCLOAK_AUTH_SERVER_URL = 'https://' # URL base do Keycloak (ajuste porta/endereço)
+KEYCLOAK_REALM = 'minha-app'               # O nome do seu Realm
+KEYCLOAK_CLIENT_ID = ''       # O Client ID que você criou
+KEYCLOAK_CLIENT_SECRET = '' # O Secret da aba Credentials do Client
+KEYCLOAK_REDIRECT_URI = 'http://localhost:8080/auth/callback' # A mesma URL de callback configurada no Keycloak
+
+
+database.default.hostname = db
+database.default.database = codeigniter
+database.default.username = user
+database.default.password = password
+database.default.DBDriver = Postgre 
+database.default.port     = 5432
