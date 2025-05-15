@@ -9,11 +9,23 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_HOSTNAME: db
-      DATABASE_NAME: codeigniter
-      DATABASE_USERNAME: user
-      DATABASE_PASSWORD: password
-      DATABASE_DRIVER: PostgreSQL
+      # APP Config
+      app.baseURL: 'https://carteira-rocw4s0sk0cocwkgkwgcsgk0.codemeister.tech'
+
+      # Keycloak
+      KEYCLOAK_AUTH_SERVER_URL: 'https://keycloak.codemeister'
+      KEYCLOAK_REALM: 'minha-app'
+      KEYCLOAK_CLIENT_ID: 'codeigniter-app'
+      KEYCLOAK_CLIENT_SECRET: ''
+      KEYCLOAK_REDIRECT_URI: 'https://carteira-rocw4s0sk0cocwkgkwgcsgk0.codemeister.tech/auth/callback'
+
+      # Database
+      database.default.hostname: db
+      database.default.database: codeigniter
+      database.default.username: user
+      database.default.password: password
+      database.default.DBDriver: Postgre
+      database.default.port: 5432
     networks:
       minha_rede_estatica:
         ipv4_address: 172.25.0.10

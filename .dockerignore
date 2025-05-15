@@ -1,0 +1,34 @@
+# Ignora arquivos e pastas do Git
+# .git
+# .gitignore
+
+# # Ignora arquivos e pastas do Composer que não precisam estar no container
+# # composer.lock
+# vendor/
+
+# # Ignora arquivos de IDE/editor
+# *.log
+# *.swp
+# *.swo
+# *.bak
+# *.tmp
+# *.idea/
+# *.vscode/
+
+# # Ignora arquivos do sistema
+# .DS_Store
+# Thumbs.db
+
+# # Ignora arquivos do PHPUnit e testes
+# phpunit.xml
+# tests/
+# coverage/
+
+# Ignora arquivos de ambiente (recomenda-se usar docker secrets ou bind mount)
+.env
+
+# Ignora diretório de escrita (usado para logs, cache, uploads etc.)
+# # Você pode montar ele como volume, se quiser manter persistência fora do container
+# writable/cache/
+
+# writable/uploads/
